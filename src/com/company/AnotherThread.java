@@ -13,9 +13,9 @@ public class AnotherThread extends Thread {
         } catch (InterruptedException e) {
             // exception if another thread wakes this one up
             System.out.printf("%sAnother thread woke me up, I am: %s%n", ANSI_BLUE, currentThread().getName());
-            e.printStackTrace();
+            return;
         }
 
-        System.out.println(ANSI_BLUE +  "3 secs have passed - sleep over!");
+        System.out.println(ANSI_BLUE +  "3 seconds have passed - sleep over!");
     }
 }

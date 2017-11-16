@@ -41,6 +41,7 @@ public class Main {
         });
 
         myRunnable.start();
+        anotherThread.interrupt();
 
         System.out.printf("%sWritten again in the main thread%n", ThreadColour.ANSI_PURPLE);
     }

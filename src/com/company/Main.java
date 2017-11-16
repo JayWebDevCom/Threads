@@ -1,8 +1,6 @@
 package com.company;
 
-import static com.company.ThreadColour.ANSI_CYAN;
-import static com.company.ThreadColour.ANSI_GREEN;
-import static com.company.ThreadColour.ANSI_RED;
+import static com.company.ThreadColour.*;
 
 public class Main {
 
@@ -12,7 +10,7 @@ public class Main {
         // will throw an exception
         // call start() not run()
 
-        System.out.println(ThreadColour.ANSI_PURPLE + "Written in the main thread");
+        System.out.println(ANSI_PURPLE + "Written in the main thread");
 
         Thread anotherThread = new AnotherThread();
         anotherThread.setName("**Another Thread**");
@@ -50,6 +48,6 @@ public class Main {
 
         myRunnableThread.start();
 
-        System.out.printf("%sWritten again in the main thread%n", ThreadColour.ANSI_PURPLE);
+        System.out.printf("%sWritten again in the main thread%n", ANSI_PURPLE);
     }
 }

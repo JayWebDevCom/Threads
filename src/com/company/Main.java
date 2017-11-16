@@ -14,15 +14,24 @@ public class Main {
 
         // anonymous class must be started immediately
         new Thread() {
-            public void run(){
+            public void run() {
                 System.out.println(ThreadColour.ANSI_GREEN + "Written in anonymous class thread");
             }
         }.start();
-
         // anonymous class lambda invocation
-        new Thread(() -> System.out.println(ThreadColour.ANSI_RED + "Written in second anonymous class thread")).run();
+        new Thread(() -> System.out.println(ThreadColour.ANSI_CYAN + "Written in second anonymous class thread")).run();
+
+        // run method from MyRunnable Thread with both run methods
+        Thread myRunnable = new Thread(new MyRunnable(){
+            @Override
+            public void run() {
+                super.run();
+                System.out.println(ThreadColour.ANSI_RED + "Written in Anon Class MyRunnable implementation of Run...");
+            }
+        });
+
+        myRunnable.start();
 
         System.out.println(ThreadColour.ANSI_PURPLE + "Written again in the main thread");
-
     }
 }

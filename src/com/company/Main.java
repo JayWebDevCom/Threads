@@ -7,7 +7,7 @@ public class Main {
         // can't start an instance of a thread more than once or one that is already running
         // will throw an exception
 
-        System.out.println("Written in the main thread");
+        System.out.println(ThreadColour.ANSI_PURPLE + "Written in the main thread");
 
         Thread anotherThread = new AnotherThread();
         anotherThread.start();
@@ -15,14 +15,14 @@ public class Main {
         // anonymous class must be started immediately
         new Thread() {
             public void run(){
-                System.out.println("Written in anonymous class thread");
+                System.out.println(ThreadColour.ANSI_GREEN + "Written in anonymous class thread");
             }
         }.start();
 
         // anonymous class lambda invocation
-        new Thread(() -> System.out.println("Written in second anonymous class thread")).run();
+        new Thread(() -> System.out.println(ThreadColour.ANSI_RED + "Written in second anonymous class thread")).run();
 
-        System.out.println("Written again in the main thread");
+        System.out.println(ThreadColour.ANSI_PURPLE + "Written again in the main thread");
 
     }
 }

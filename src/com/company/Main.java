@@ -19,12 +19,10 @@ public class Main {
         anotherThread.start();
 
         // anonymous class must be started immediately
-        new Thread() {
-            public void run() {
-                System.out.println(ANSI_GREEN + "Written in anonymous class thread");
-                System.out.println(ANSI_GREEN +  "Written in: " + currentThread().getName());
-            }
-        }.start();
+        new Thread(() -> {
+            System.out.println(ANSI_GREEN + "Written in anonymous class thread");
+            System.out.println(ANSI_GREEN +  "Written in: " + Thread.currentThread().getName());
+        }).start();
 
         // anonymous class lambda invocation
         new Thread(() ->
@@ -32,16 +30,25 @@ public class Main {
         ).start();
 
         // run method from MyRunnable Thread with both run methods
-        Thread myRunnable = new Thread(new MyRunnable(){
+        Thread myRunnableThread = new Thread(new MyRunnable(){
             @Override
             public void run() {
                 super.run();
-                System.out.println(ANSI_RED + "Written in Anon Class MyRunnable implementation of Run...");
+                System.out.println(ANSI_RED + "Written in Anon Class MyRunnable implementation of run() ...");
+
+                try {
+                    // add timeout before joining
+                    anotherThread.join(2000);
+                    // will wait for the sleeping thread to finish sleeping - not interrupted
+                    System.out.println(ANSI_RED + "AnotherThread terminated, or timed-out so I am running again");
+                } catch (InterruptedException e) {
+                    System.out.println(ANSI_RED + "Waiting aborted. I was interrupted");
+                }
+
             }
         });
 
-        myRunnable.start();
-        anotherThread.interrupt();
+        myRunnableThread.start();
 
         System.out.printf("%sWritten again in the main thread%n", ThreadColour.ANSI_PURPLE);
     }

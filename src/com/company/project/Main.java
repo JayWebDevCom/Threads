@@ -19,6 +19,7 @@ public class Main {
 
         // process of controlling when threads execute code and access the heap is known as synchronization
         // prevents thread interference within synchronised method
+        // i.e. allow method to run and finish before another thread gets access to it - prevents race condition
 
         CountDown threadCountdown = new CountDown();
 

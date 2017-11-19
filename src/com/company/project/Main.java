@@ -17,17 +17,18 @@ public class Main {
         // threads can be suspended between steps
         // thread decrements and prints
 
-        CountDown threadCountdown1 = new CountDown();
-        CountDown threadCountdown2 = new CountDown();
-        CountDown threadCountdown3 = new CountDown();
+        // process of controlling when threads execute code and access the heap is known as synchronization
+        // prevents thread interference within synchronised method
 
-        CountDownThread countDownThread = new CountDownThread(threadCountdown1);
+        CountDown threadCountdown = new CountDown();
+
+        CountDownThread countDownThread = new CountDownThread(threadCountdown);
         countDownThread.setName("Thread-1");
 
-        CountDownThread countDownThread2 = new CountDownThread(threadCountdown2);
+        CountDownThread countDownThread2 = new CountDownThread(threadCountdown);
         countDownThread2.setName("Thread-2");
 
-        CountDownThread countDownThread3 = new CountDownThread(threadCountdown3);
+        CountDownThread countDownThread3 = new CountDownThread(threadCountdown);
         countDownThread3.setName("Thread-3");
 
         countDownThread.start();

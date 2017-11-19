@@ -6,7 +6,7 @@ public class CountDown {
 
     private int i; //  private instance variable
 
-    public void doCountdown() {
+    public synchronized void doCountdown() {
         String colour;
         switch (Thread.currentThread().getName()) {
             case "Thread-1":
